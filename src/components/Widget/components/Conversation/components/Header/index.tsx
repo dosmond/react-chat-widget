@@ -28,7 +28,7 @@ function Header({ title, subtitle, toggleChat, showCloseButton, titleAvatar, onH
       }
       {onHandleReceiverChanged && receiverData &&
         <Dropdown className="rcw-dropdown" title={dropDownTitle}>
-          {receiverData.map(data => <Dropdown.Item onSelect={() => onHandleReceiverChanged(data)}>{data.text}</Dropdown.Item>)}
+          {receiverData.map(data => <Dropdown.Item key={data.text} onSelect={() => onHandleReceiverChanged(data)}>{data.text}</Dropdown.Item>)}
         </Dropdown>
       }
       <h4 className="rcw-title">
