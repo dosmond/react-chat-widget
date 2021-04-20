@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import Widget from './components/Widget';
 
-import store from  './store';
+import store from './store';
 
 import { AnyFunction } from './utils/types';
 
@@ -28,6 +28,8 @@ type Props = {
   imagePreview?: boolean;
   zoomStep?: number;
   handleSubmit?: AnyFunction;
+  handleReceiverChange?: AnyFunction;
+  receiverData?: any;
 } & typeof defaultProps;
 
 function ConnectedWidget({
@@ -50,7 +52,9 @@ function ConnectedWidget({
   showTimeStamp,
   imagePreview,
   zoomStep,
-  handleSubmit
+  handleSubmit,
+  handleReceiverChange,
+  receiverData
 }: Props) {
   return (
     <Provider store={store}>
@@ -75,6 +79,8 @@ function ConnectedWidget({
         imagePreview={imagePreview}
         zoomStep={zoomStep}
         handleSubmit={handleSubmit}
+        handleReceiverChange={handleReceiverChange}
+        receiverData={receiverData}
       />
     </Provider>
   );

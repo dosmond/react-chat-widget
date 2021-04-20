@@ -11,12 +11,31 @@ export default class App extends Component {
     addResponseMessage('![vertical](https://d2sofvawe08yqg.cloudfront.net/reintroducing-react/hero2x?1556470143)');
   }
 
+  receiverData = [
+    {
+      text: 'hello there'
+    },
+    {
+      text: 'hello there 1'
+    },
+    {
+      text: 'hello there 3'
+    },
+    {
+      text: 'hello there 3'
+    },
+  ]
+
+  handleReceiverChange = (change: any) => {
+    console.log(change)
+  }
+
   handleNewUserMessage = (newMessage: any) => {
     toggleMsgLoader();
     setTimeout(() => {
       toggleMsgLoader();
       if (newMessage === 'fruits') {
-        setQuickButtons([ { label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' } ]);
+        setQuickButtons([{ label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' }]);
       } else {
         addResponseMessage(newMessage);
       }
@@ -29,7 +48,7 @@ export default class App extends Component {
   }
 
   handleSubmit = (msgText: string) => {
-    if(msgText.length < 80) {
+    if (msgText.length < 80) {
       addUserMessage("Uh oh, please write a bit more.");
       return false;
     }
@@ -39,7 +58,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <button style={{position: 'absolute', right: 40, bottom: 150}}>test</button>
+        <button style={{ position: 'absolute', right: 40, bottom: 150 }}>test</button>
         <Widget
           title="Bienvenido"
           subtitle="Asistente virtual"
@@ -47,7 +66,10 @@ export default class App extends Component {
           handleNewUserMessage={this.handleNewUserMessage}
           handleQuickButtonClicked={this.handleQuickButtonClicked}
           imagePreview
+          showCloseButton
           handleSubmit={this.handleSubmit}
+          receiverData={this.receiverData}
+          handleReceiverChange={this.handleReceiverChange}
         />
       </div>
     );

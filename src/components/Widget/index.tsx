@@ -27,6 +27,8 @@ type Props = {
   imagePreview?: boolean;
   zoomStep?: number;
   handleSubmit?: AnyFunction;
+  handleReceiverChange?: AnyFunction;
+  receiverData?: any;
 }
 
 function Widget({
@@ -49,7 +51,9 @@ function Widget({
   showTimeStamp,
   imagePreview,
   zoomStep,
-  handleSubmit
+  handleSubmit,
+  handleReceiverChange,
+  receiverData
 }: Props) {
   const dispatch = useDispatch();
 
@@ -60,9 +64,9 @@ function Widget({
   const handleMessageSubmit = (event) => {
     event.preventDefault();
     const userInput = event.target.message.value;
-    
-    if (!userInput.trim()) {      
-      return;      
+
+    if (!userInput.trim()) {
+      return;
     }
 
     handleSubmit?.(userInput);
@@ -74,6 +78,10 @@ function Widget({
   const onQuickButtonClicked = (event, value) => {
     event.preventDefault();
     handleQuickButtonClicked?.(value)
+  }
+
+  const onHandleReceiverChanged = (value) => {
+    handleReceiverChange?.(value)
   }
 
   return (
@@ -98,6 +106,8 @@ function Widget({
       showTimeStamp={showTimeStamp}
       imagePreview={imagePreview}
       zoomStep={zoomStep}
+      onHandleReceiverChanged={onHandleReceiverChanged}
+      receiverData={receiverData}
     />
   );
 }

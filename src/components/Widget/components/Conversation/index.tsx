@@ -26,6 +26,8 @@ type Props = {
   onTextInputChange?: (event: any) => void;
   sendButtonAlt: string;
   showTimeStamp: boolean;
+  onHandleReceiverChanged?: AnyFunction;
+  receiverData?: any;
 };
 
 function Conversation({
@@ -43,7 +45,9 @@ function Conversation({
   onQuickButtonClicked,
   onTextInputChange,
   sendButtonAlt,
-  showTimeStamp
+  showTimeStamp,
+  onHandleReceiverChanged,
+  receiverData
 }: Props) {
   return (
     <div className={cn('rcw-conversation-container', className)} aria-live="polite">
@@ -53,6 +57,8 @@ function Conversation({
         toggleChat={toggleChat}
         showCloseButton={showCloseButton}
         titleAvatar={titleAvatar}
+        onHandleReceiverChanged={onHandleReceiverChanged}
+        receiverData={receiverData}
       />
       <Messages profileAvatar={profileAvatar} showTimeStamp={showTimeStamp} />
       <QuickButtons onQuickButtonClicked={onQuickButtonClicked} />
